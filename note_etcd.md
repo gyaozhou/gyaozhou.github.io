@@ -15,6 +15,13 @@ etcd这个名字本身就很容易令人混淆，etcd既可以指这个项目的
 - ./etcdmain ./main.go，这里封装了etcd这个可执行文件，这里会判断工作在服务模式还是proxy模式，前者会通过./embed/(偶尔也会直接使用./etcdserver/)来提供配置管理服务。后者会通过./proxy/来提供gateway的功能。
 - ./client 提供了Go client library for etcd
 - ./etcdctl 是client的命令行形式
+## 源代码中名词
+- Raft: Etcd所采用的保证分布式系统强一致性的算法。
+- Node: Raft算法中server的一个实例，仅指代参与Raft算法部分。
+- Member: 服务etcd的一个实例，包含一个Node，并且负责和client交互，也提供member之间的通信。
+- Proxy: etcd的一个工作模式，为etcd cluster提供反向代理
+
+其它的名词要么是Raft中所使用的，要么是字面意思比较清晰的。
 
 ## library
 
